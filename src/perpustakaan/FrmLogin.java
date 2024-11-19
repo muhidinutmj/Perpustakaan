@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package perpustakaan;
+import com.sun.jdi.connect.spi.Connection;
 import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 /**
  *
@@ -11,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmLogin extends javax.swing.JFrame {
 
+    private Connection conn = new koneksi().connect();
     /**
      * Creates new form FrmLogin
      */
@@ -89,7 +92,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
             java.sql.Statement stat = conn.createStatement();
-            
+            ResultSet result=stat.executeQuery("SELECT * FROM petugas WHERE username='" +txtUser.getText()+"'");
+            if(result.next()) {
+                
+            }
             
         } catch(Exception e) {
             JOption.showMessageDialog(rootPane, "Gagal");
